@@ -26,4 +26,14 @@ class UtilisateurModele {
         }
         return false;
     }
+public function getTousLesPatients() {
+    $requete = $this->pdo->query("SELECT * FROM utilisateur WHERE role = 'patient'");
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function supprimerPatient($id) {
+    $requete = $this->pdo->prepare("DELETE FROM utilisateur WHERE id = ?");
+    return $requete->execute([$id]);
+}
+
+    }

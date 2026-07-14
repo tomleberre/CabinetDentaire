@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 session_start();
 require_once 'app/helpers/auth.php';
 // Routeur principal
@@ -31,6 +33,21 @@ switch ($page) {
         break;
     case 'dashboard':
         require_once 'app/controleurs/DashboardControleur.php';
+        break;
+    case 'admin-rendez-vous':
+        require_once 'app/controleurs/AdminRendezVousControleur.php';
+        break;
+    case 'admin-patients':
+        require_once 'app/controleurs/AdminPatientsControleur.php';
+        break;
+    case 'admin-services':
+        require_once 'app/controleurs/AdminServicesControleur.php';
+        break;
+    case 'admin-actualites':
+        require_once 'app/controleurs/AdminActualitesControleur.php';
+        break;
+    case 'admin-horaires':
+        require_once 'app/controleurs/AdminHorairesControleur.php';
         break;
     default:
         require_once 'app/vues/404.php';
