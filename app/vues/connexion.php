@@ -1,25 +1,29 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Connexion</title>
-</head>
-<body>
-    <?php require_once 'app/vues/navbar.php'; ?>
-    <h1>Connexion</h1>
+<?php require_once 'app/vues/header.php'; ?>
+<?php require_once 'app/vues/navbar.php'; ?>
 
-    <?php if (isset($erreur)) : ?>
-        <p style="color:red;"><?= $erreur ?></p>
-    <?php endif; ?>
+<main class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h1 class="mb-4">Connexion</h1>
 
-    <form method="POST" action="?page=connexion">
-        <label>Email</label>
-        <input type="email" name="email" required>
+            <?php if (isset($erreur)) : ?>
+                <div class="alert alert-danger"><?= $erreur ?></div>
+            <?php endif; ?>
 
-        <label>Mot de passe</label>
-        <input type="password" name="mot_de_passe" required>
+            <form method="POST" action="?page=connexion">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mot de passe</label>
+                    <input type="password" name="mot_de_passe" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+            </form>
+            <p class="mt-3">Pas encore de compte ? <a href="?page=inscription">S'inscrire</a></p>
+        </div>
+    </div>
+</main>
 
-        <button type="submit">Se connecter</button>
-    </form>
-</body>
-</html>
+<?php require_once 'app/vues/footer.php'; ?>

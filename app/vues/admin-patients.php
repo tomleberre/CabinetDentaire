@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Gestion des patients</title>
-</head>
-<body>
-    <?php require_once 'app/vues/navbar.php'; ?>
-    <h1>Gestion des patients</h1>
+<?php require_once 'app/vues/header.php'; ?>
+<?php require_once 'app/vues/navbar.php'; ?>
 
-    <table>
-        <thead>
+<main class="container mt-5">
+    <h1 class="mb-4">Gestion des patients</h1>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
@@ -26,13 +22,14 @@
                 <td><?= $patient['email'] ?></td>
                 <td><?= $patient['telephone'] ?></td>
                 <td>
-                    <a href="?page=admin-patients&action=supprimer&id=<?= $patient['id'] ?>">Supprimer</a>
+                    <a href="?page=admin-patients&action=supprimer&id=<?= $patient['id'] ?>" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <a href="?page=dashboard">Retour au dashboard</a>
-</body>
-</html>
+    <a href="?page=dashboard" class="btn btn-secondary">Retour au dashboard</a>
+</main>
+
+<?php require_once 'app/vues/footer.php'; ?>

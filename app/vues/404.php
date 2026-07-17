@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Page introuvable</title>
-</head>
-<body>
-    <h1>Page introuvable</h1>
-    <p>La page que vous cherchez n'existe pas.</p>
-    <a href="?page=accueil">Retour à l'accueil</a>
-</body>
-</html>
+<?php require_once 'app/vues/header.php'; ?>
+<?php require_once 'app/vues/navbar.php'; ?>
+
+<main class="container mt-5 text-center">
+    <h1 class="display-1">404</h1>
+    <p class="lead">Page introuvable.</p>
+    <a href="?page=accueil" class="btn btn-primary">Retour à l'accueil</a>
+</main>
+
+<?php require_once 'app/vues/footer.php'; ?>

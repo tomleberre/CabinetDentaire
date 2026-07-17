@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Formulaire actualité</title>
-</head>
-<body>
-    <?php require_once 'app/vues/navbar.php'; ?>
-    <h1><?= isset($actualite) ? 'Modifier une actualité' : 'Ajouter une actualité' ?></h1>
+<?php require_once 'app/vues/header.php'; ?>
+<?php require_once 'app/vues/navbar.php'; ?>
 
-    <form method="POST">
-        <label>Titre</label>
-        <input type="text" name="titre" value="<?= isset($actualite) ? $actualite['titre'] : '' ?>" required>
+<main class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="mb-4"><?= isset($actualite) ? 'Modifier une actualité' : 'Ajouter une actualité' ?></h1>
 
-        <label>Contenu</label>
-        <textarea name="contenu" required><?= isset($actualite) ? $actualite['contenu'] : '' ?></textarea>
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Titre</label>
+                    <input type="text" name="titre" class="form-control" value="<?= isset($actualite) ? $actualite['titre'] : '' ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Contenu</label>
+                    <textarea name="contenu" class="form-control" rows="5" required><?= isset($actualite) ? $actualite['contenu'] : '' ?></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Date de publication</label>
+                    <input type="date" name="date_publication" class="form-control" value="<?= isset($actualite) ? $actualite['date_publication'] : '' ?>" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100"><?= isset($actualite) ? 'Modifier' : 'Ajouter' ?></button>
+            </form>
 
-        <label>Date de publication</label>
-        <input type="date" name="date_publication" value="<?= isset($actualite) ? $actualite['date_publication'] : '' ?>" required>
+            <a href="?page=admin-actualites" class="btn btn-secondary mt-3">Retour</a>
+        </div>
+    </div>
+</main>
 
-        <button type="submit"><?= isset($actualite) ? 'Modifier' : 'Ajouter' ?></button>
-    </form>
-
-    <a href="?page=admin-actualites">Retour</a>
-</body>
-</html>
+<?php require_once 'app/vues/footer.php'; ?>

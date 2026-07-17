@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Gestion des rendez-vous</title>
-</head>
-<body>
-    <?php require_once 'app/vues/navbar.php'; ?>
-    <h1>Gestion des rendez-vous</h1>
+<?php require_once 'app/vues/header.php'; ?>
+<?php require_once 'app/vues/navbar.php'; ?>
 
-    <table>
-        <thead>
+<main class="container mt-5">
+    <h1 class="mb-4">Gestion des rendez-vous</h1>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
             <tr>
                 <th>Patient</th>
                 <th>Date</th>
@@ -26,17 +22,22 @@
                 <td><?= $rdv['date'] ?></td>
                 <td><?= $rdv['heure'] ?></td>
                 <td><?= $rdv['type_consultation'] ?></td>
-                <td><?= $rdv['statut'] ?></td>
                 <td>
-                    <a href="?page=admin-rendez-vous&action=confirmer&id=<?= $rdv['id'] ?>">Confirmer</a>
-                    <a href="?page=admin-rendez-vous&action=annuler&id=<?= $rdv['id'] ?>">Annuler</a>
-                    <a href="?page=admin-rendez-vous&action=supprimer&id=<?= $rdv['id'] ?>">Supprimer</a>
+                    <span class="badge <?= $rdv['statut'] === 'confirmé' ? 'bg-success' : ($rdv['statut'] === 'annulé' ? 'bg-danger' : 'bg-warning') ?>">
+                        <?= $rdv['statut'] ?>
+                    </span>
+                </td>
+                <td>
+                    <a href="?page=admin-rendez-vous&action=confirmer&id=<?= $rdv['id'] ?>" class="btn btn-success btn-sm">Confirmer</a>
+                    <a href="?page=admin-rendez-vous&action=annuler&id=<?= $rdv['id'] ?>" class="btn btn-warning btn-sm">Annuler</a>
+                    <a href="?page=admin-rendez-vous&action=supprimer&id=<?= $rdv['id'] ?>" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <a href="?page=dashboard">Retour au dashboard</a>
-</body>
-</html>
+    <a href="?page=dashboard" class="btn btn-secondary">Retour au dashboard</a>
+</main>
+
+<?php require_once 'app/vues/footer.php'; ?>
