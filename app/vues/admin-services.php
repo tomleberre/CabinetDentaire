@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Gestion des services</title>
-</head>
-<body>
-    <?php require_once 'app/vues/navbar.php'; ?>
-    <h1>Gestion des services</h1>
+<?php require_once 'app/vues/header.php'; ?>
+<?php require_once 'app/vues/navbar.php'; ?>
 
-    <a href="?page=admin-services&action=ajouter">Ajouter un service</a>
+<main class="container mt-5">
+    <h1 class="mb-4">Gestion des services</h1>
 
-    <table>
-        <thead>
+    <a href="?page=admin-services&action=ajouter" class="btn btn-primary mb-4">Ajouter un service</a>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
             <tr>
                 <th>Nom</th>
                 <th>Description</th>
@@ -26,14 +22,15 @@
                 <td><?= $service['description'] ?></td>
                 <td><?= $service['prix'] ?> €</td>
                 <td>
-                    <a href="?page=admin-services&action=modifier&id=<?= $service['id'] ?>">Modifier</a>
-                    <a href="?page=admin-services&action=supprimer&id=<?= $service['id'] ?>">Supprimer</a>
+                    <a href="?page=admin-services&action=modifier&id=<?= $service['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="?page=admin-services&action=supprimer&id=<?= $service['id'] ?>" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <a href="?page=dashboard">Retour au dashboard</a>
-</body>
-</html>
+    <a href="?page=dashboard" class="btn btn-secondary">Retour au dashboard</a>
+</main>
+
+<?php require_once 'app/vues/footer.php'; ?>

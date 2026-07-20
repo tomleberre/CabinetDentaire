@@ -1,19 +1,16 @@
 <?php
 
-require_once 'app/modeles/Database.php';
+require_once __DIR__ . '/Database.php';
 
-class RendezVousModele
-{
+class RendezVousModele {
     private $pdo;
 
-    public function __construct()
-    {
+    public function __construct() {
         $db = new Database();
         $this->pdo = $db->getConnection();
     }
 
-    public function getTousLesRendezVous()
-    {
+    public function getTousLesRendezVous() {
         $requete = $this->pdo->query("
             SELECT rendezvous.*, 
                    utilisateur.nom, utilisateur.prenom 
@@ -23,20 +20,24 @@ class RendezVousModele
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function modifierStatut($id, $statut)
-    {
+    public function modifierStatut($id, $statut) {
         $requete = $this->pdo->prepare("UPDATE rendezvous SET statut = ? WHERE id = ?");
         return $requete->execute([$statut, $id]);
     }
 
-    public function supprimerRendezVous($id)
-    {
+    public function supprimerRendezVous($id) {
         $requete = $this->pdo->prepare("DELETE FROM rendezvous WHERE id = ?");
         return $requete->execute([$id]);
     }
-    public function ajouterRendezVous($date, $heure, $type_consultation, $id_patient, $id_administrateur)
-    {
+
+    public function ajouterRendezVous($date, $heure, $type_consultation, $id_patient, $id_administrateur) {
         $requete = $this->pdo->prepare("INSERT INTO rendezvous (date, heure, type_consultation, statut, id_patient, id_administrateur) VALUES (?, ?, ?, 'en attente', ?, ?)");
         return $requete->execute([$date, $heure, $type_consultation, $id_patient, $id_administrateur]);
+    }
+
+    public function creneauDisponible($date, $heure) {
+        $requete = $this->pdo->prepare("SELECT COUNT(*) FROM rendezvous WHERE date = ? AND heure = ? AND statut != 'annulé'");
+        $requete->execute([$date, $heure]);
+        return $requete->fetchColumn() == 0;
     }
 }

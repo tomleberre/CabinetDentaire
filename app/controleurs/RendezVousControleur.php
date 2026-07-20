@@ -11,18 +11,22 @@ class RendezVousControleur {
             $id_patient = $_SESSION['utilisateur']['id'];
             $id_administrateur = 1;
 
-            $resultat = $modele->ajouterRendezVous(
-                $_POST['date'],
-                $_POST['heure'],
-                $_POST['type_consultation'],
-                $id_patient,
-                $id_administrateur
-            );
-
-            if ($resultat) {
-                $succes = "Votre rendez-vous a bien été enregistré !";
+            if (!$modele->creneauDisponible($_POST['date'], $_POST['heure'])) {
+                $erreur = "Ce créneau est déjà pris. Veuillez choisir un autre horaire.";
             } else {
-                $erreur = "Une erreur est survenue, veuillez réessayer.";
+                $resultat = $modele->ajouterRendezVous(
+                    $_POST['date'],
+                    $_POST['heure'],
+                    $_POST['type_consultation'],
+                    $id_patient,
+                    $id_administrateur
+                );
+
+                if ($resultat) {
+                    $succes = "Votre rendez-vous a bien été enregistré !";
+                } else {
+                    $erreur = "Une erreur est survenue, veuillez réessayer.";
+                }
             }
         }
 

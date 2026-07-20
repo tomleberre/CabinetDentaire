@@ -20,8 +20,22 @@
                     <input type="date" name="date" class="form-control" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Heure</label>
-                    <input type="time" name="heure" class="form-control" required>
+                    <label class="form-label">Créneau horaire</label>
+                    <select name="heure" class="form-select" required>
+                        <option value="">Choisir un créneau...</option>
+                        <option value="09:00">09h00 - 09h30</option>
+                        <option value="09:30">09h30 - 10h00</option>
+                        <option value="10:00">10h00 - 10h30</option>
+                        <option value="10:30">10h30 - 11h00</option>
+                        <option value="11:00">11h00 - 11h30</option>
+                        <option value="11:30">11h30 - 12h00</option>
+                        <option value="14:00">14h00 - 14h30</option>
+                        <option value="14:30">14h30 - 15h00</option>
+                        <option value="15:00">15h00 - 15h30</option>
+                        <option value="15:30">15h30 - 16h00</option>
+                        <option value="16:00">16h00 - 16h30</option>
+                        <option value="16:30">16h30 - 17h00</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Type de consultation</label>
